@@ -1,1 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+.btn-app-primary{
+    background: white;
+    color: #2c5364;
+    border: 1px solid #2c5364;
+    border-radius: 0;
+    padding: 5px;
+    
+}
+.btn-app-primary:hover{
+    animation-name: btn-app-primary-hover;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    
+}
+.btn-app-primary:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+@keyframes btn-app-primary-hover {
+    from {
+        background: white;
+        color: #163542;
+        border: 1px solid #163542;}
+    to {
+        background: #163542;
+        color: white;
+    }
+}
+
+div.error{
+    color:#f10000bf;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0F2027; 
+  }

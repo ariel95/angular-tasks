@@ -1,0 +1,25 @@
+<div id="content" class="content" role="main">
+    <div class="container">
+        <div *ngIf="!taskActive">
+            <app-tasks-section 
+                [taskList]="taskList"
+                [selectedTask]="selectedTask"
+            ></app-tasks-section>
+            <button class="btn-app-primary btn-add-task" (click)="addTask()">Nueva tarea</button>
+            <button class="btn-app-primary btn-add-task" (click)="deleteDoneTasks()">Borrar Tareas Hechas</button>
+            <button class="btn-app-primary btn-add-task" (click)="deleteAllTasks()">Borrar Todo</button>
+        </div>
+        <div *ngIf="taskActive">
+            <app-task-active
+                [taskList]="taskList"
+                [selectedTask]="selectedTask"
+                [taskActive]="taskActive"
+                (taskActiveEvent)="changeTaskActive($event)"
+                (newTaskEvent)="changeNewTask($event)"
+            ></app-task-active>
+        </div>
+        
+    </div>
+    
+    
+</div>

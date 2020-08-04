@@ -1,0 +1,36 @@
+#task-section i{
+    /* float: right; */
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#task-section input[type="checkbox"]{
+    /* float: right;
+    margin-left: 10px; */
+    cursor: pointer;
+    margin-top: 6px;
+}
+
+#task-section > li > div{
+    display: flex;
+    overflow-wrap: anywhere;
+}
+
+#task-section .done {
+    background-color: #c2c2c2;
+}
+
+#task-section {
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+
+#task-section li {
+    width: auto;
+    margin: 0;
+}
+
+#task-section li.done span.text {
+    text-decoration:line-through;
+}
+
