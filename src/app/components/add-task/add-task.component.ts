@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
+import { setListTask } from '../../helpers/TaskLS'
 import { Task } from '../../models/task'
 
 @Component({
@@ -15,7 +15,7 @@ export class AddTaskComponent implements OnInit {
   @Input() taskList: Task[];
   @Input() taskActive: boolean;
   @Output() taskActiveEvent = new EventEmitter<boolean>();
-  @Output() newTaskEvent = new EventEmitter<Task>();
+  @Output() changeTaskEvent = new EventEmitter<Task>();
 
   constructor() { }
 
@@ -31,16 +31,17 @@ export class AddTaskComponent implements OnInit {
 
     this.selectedTask.id = Math.random();
     this.taskList.push(this.selectedTask);
-    localStorage.setItem("task-list", JSON.stringify(this.taskList));
+    setListTask(this.taskList)
+    // localStorage.setItem("task-list", JSON.stringify(this.taskList));
     // this.selectedTask = new Task();
-    this.newTaskEvent.emit(new Task());
+    this.changeTaskEvent.emit(new Task());
     this.taskActiveEvent.emit(false);
   }
 
   cancel(){
     
     // this.selectedTask = new Task();
-    this.newTaskEvent.emit(new Task());
+    this.changeTaskEvent.emit(new Task());
     this.taskActiveEvent.emit(false)
 
   }

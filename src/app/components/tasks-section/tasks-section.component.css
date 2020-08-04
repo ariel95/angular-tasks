@@ -8,7 +8,8 @@
     /* float: right;
     margin-left: 10px; */
     cursor: pointer;
-    margin-top: 6px;
+    position: relative;
+    top: 3px;
 }
 
 #task-section > li > div{
@@ -28,9 +29,13 @@
 #task-section li {
     width: auto;
     margin: 0;
+   
 }
 
 #task-section li.done span.text {
     text-decoration:line-through;
 }
 
+#task-section li > div{
+    display: inline-block;
+}

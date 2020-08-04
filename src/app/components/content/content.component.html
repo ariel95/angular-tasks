@@ -1,37 +1,29 @@
 <div id="content" class="content" role="main">
     <div class="container">
+        
         <div *ngIf="!taskActive">
-            <app-tasks-section 
-                [taskList]="taskList"
-                [selectedTask]="selectedTask"
-                (taskActiveEvent)="changeEditTask($event)"
-            ></app-tasks-section>
-            <button class="btn-app-primary btn-add-task" (click)="addTask()">Nueva tarea</button>
-            <button class="btn-app-primary btn-add-task" (click)="deleteDoneTasks()">Borrar Tareas Hechas</button>
-            <button class="btn-app-primary btn-add-task" (click)="deleteAllTasks()">Borrar Todo</button>
+            <div class="title">
+                Lista de tareas
+            </div>
+            <app-tasks-section [taskList]="taskList" [selectedTask]="selectedTask"
+                (taskActiveEvent)="changeEditTask($event)"></app-tasks-section>
+            <div class="actions">
+                <button class="btn-app-primary btn-add-task" (click)="addTask()">Nueva tarea</button>
+                <button class="btn-app-primary btn-add-task" (click)="deleteDoneTasks()">Borrar tareas hechas</button>
+                <button class="btn-app-primary btn-add-task" (click)="deleteAllTasks()">Borrar todo</button>
+            </div>
         </div>
         <div *ngIf="taskActive">
 
-            <app-edit-task
-                *ngIf="selectedTask.id != 0"
-                [taskList]="taskList"
-                [selectedTask]="selectedTask"
-                [taskActive]="taskActive"
-                (taskActiveEvent)="changeTaskActive($event)"
-                (newTaskEvent)="changeNewTask($event)"
-                
-            ></app-edit-task>
-            <app-add-task
-                *ngIf="selectedTask.id == 0"
-                [taskList]="taskList"
-                [selectedTask]="selectedTask"
-                [taskActive]="taskActive"
-                (taskActiveEvent)="changeTaskActive($event)"
-                (newTaskEvent)="changeNewTask($event)"
-            ></app-add-task>
+            <app-edit-task *ngIf="selectedTask.id != 0" [taskList]="taskList" [selectedTask]="selectedTask"
+                [taskActive]="taskActive" (taskActiveEvent)="changeTaskActive($event)"
+                (changeTaskEvent)="changeSelectedTask($event)"></app-edit-task>
+            <app-add-task *ngIf="selectedTask.id == 0" [taskList]="taskList" [selectedTask]="selectedTask"
+                [taskActive]="taskActive" (taskActiveEvent)="changeTaskActive($event)"
+                (changeTaskEvent)="changeSelectedTask($event)"></app-add-task>
         </div>
-        
+
     </div>
-    
-    
+
+
 </div>

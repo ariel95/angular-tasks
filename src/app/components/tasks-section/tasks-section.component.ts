@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { setListTask } from '../../helpers/TaskLS'
 import { Task } from '../../models/task'
 
 @Component({
@@ -26,12 +27,14 @@ export class TasksSectionComponent implements OnInit {
 
   delete (task: Task){
     this.taskList = this.taskList.filter(x => x.id !== task.id);
-    localStorage.setItem("task-list", JSON.stringify(this.taskList));
+    setListTask(this.taskList)
+    // localStorage.setItem("task-list", JSON.stringify(this.taskList));
   }
 
   done(task: Task){
     task.done = !task.done;
-    localStorage.setItem("task-list", JSON.stringify(this.taskList));
+    setListTask(this.taskList)
+    // localStorage.setItem("task-list", JSON.stringify(this.taskList));
   }
 
 }

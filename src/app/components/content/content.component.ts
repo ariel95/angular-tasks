@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Task} from '../../models/task'
+import { getListTask, setListTask } from '../../helpers/TaskLS'
 
 @Component({
   selector: 'app-content',
@@ -11,9 +12,20 @@ export class ContentComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.taskList = getListTask() || this.initialTasksDefect;
   }
 
-  taskList : Task[] = JSON.parse(localStorage.getItem("task-list")) || [];
+  initialTasksDefect: Task[] = [
+    {id: 1, text: "Tarea 1 sin hacer", done: false},
+    {id: 2, text: "Tarea 2 hecha", done: true},
+    {id: 3, text: "Tarea 3 sin hacer", done: false},
+    {id: 4, text: "Tarea 4 sin hacer", done: false},
+    {id: 5, text: "Tarea 5 hecha", done: true},
+    {id: 6, text: "Tarea 6 hecha", done: true},
+    {id: 7, text: "Tarea 7 sin hacer", done: false}
+  ]
+
+  taskList : Task[] = [];
   selectedTask: Task = new Task();
   taskActive: boolean = false;
 
@@ -23,19 +35,20 @@ export class ContentComponent implements OnInit {
 
   deleteAllTasks(){
     this.taskList = [];
-    localStorage.setItem("task-list", JSON.stringify(this.taskList));
+    setListTask(this.taskList)
+    // localStorage.setItem("task-list", JSON.stringify(this.taskList));
   }
 
   deleteDoneTasks(){
     this.taskList = this.taskList.filter(x => !x.done);
-    localStorage.setItem("task-list", JSON.stringify(this.taskList));
+    setListTask(this.taskList)
   }
 
   changeTaskActive(isActive: boolean){
     this.taskActive = isActive;
   }
 
-  changeNewTask(task: Task){
+  changeSelectedTask(task: Task){
     this.selectedTask = task;
   }
   changeEditTask(task: Task){

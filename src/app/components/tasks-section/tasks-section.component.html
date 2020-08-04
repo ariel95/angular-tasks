@@ -1,14 +1,14 @@
 <ul id="task-section" class="list-group">
     <li *ngIf="taskList.length == 0" class="list-group-item list-group-item-action row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 noTasks text-center">
             <span class="text">Aún no ha agregado ninguna tarea</span>
         </div>
     </li>
-    <li *ngFor="let task of taskList" class="list-group-item list-group-item-action row" [class.done]="task.done">
-        <div class="col-sm-12">
+    <li *ngFor="let task of taskList" class="list-group-item" [class.done]="task.done">
+        <div class="col-md-10">
             <span class="text">{{task.text}}</span>
         </div>
-        <div class="col-sm-12">
+        <div class="col-md-2">
             <input [(ngModel)]="task.done" (click)="done(task)" type="checkbox" aria-label="Checkbox for following text input">
             <i class="delete" (click)="delete(task)">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
