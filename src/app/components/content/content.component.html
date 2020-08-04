@@ -4,19 +4,31 @@
             <app-tasks-section 
                 [taskList]="taskList"
                 [selectedTask]="selectedTask"
+                (taskActiveEvent)="changeEditTask($event)"
             ></app-tasks-section>
             <button class="btn-app-primary btn-add-task" (click)="addTask()">Nueva tarea</button>
             <button class="btn-app-primary btn-add-task" (click)="deleteDoneTasks()">Borrar Tareas Hechas</button>
             <button class="btn-app-primary btn-add-task" (click)="deleteAllTasks()">Borrar Todo</button>
         </div>
         <div *ngIf="taskActive">
-            <app-task-active
+
+            <app-edit-task
+                *ngIf="selectedTask.id != 0"
                 [taskList]="taskList"
                 [selectedTask]="selectedTask"
                 [taskActive]="taskActive"
                 (taskActiveEvent)="changeTaskActive($event)"
                 (newTaskEvent)="changeNewTask($event)"
-            ></app-task-active>
+                
+            ></app-edit-task>
+            <app-add-task
+                *ngIf="selectedTask.id == 0"
+                [taskList]="taskList"
+                [selectedTask]="selectedTask"
+                [taskActive]="taskActive"
+                (taskActiveEvent)="changeTaskActive($event)"
+                (newTaskEvent)="changeNewTask($event)"
+            ></app-add-task>
         </div>
         
     </div>

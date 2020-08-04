@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { AppComponent } from '../../app.component'
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Task } from '../../models/task'
 
 @Component({
@@ -11,6 +10,7 @@ export class TasksSectionComponent implements OnInit {
 
   @Input() taskList: Task[];
   @Input() selectedTask: Task;
+  @Output() taskActiveEvent = new EventEmitter<Task>();
 
   constructor() { 
 
@@ -19,10 +19,10 @@ export class TasksSectionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // edit (task: Task){
-  //   this.selectedTask = task
-  //   console.log(this.selectedTask.text)
-  // }
+
+  edit (task: Task){
+    this.taskActiveEvent.emit(task);
+  }
 
   delete (task: Task){
     this.taskList = this.taskList.filter(x => x.id !== task.id);

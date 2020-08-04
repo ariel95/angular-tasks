@@ -38,4 +38,8 @@ export class ContentComponent implements OnInit {
   changeNewTask(task: Task){
     this.selectedTask = task;
   }
+  changeEditTask(task: Task){
+    this.selectedTask = task;
+    this.taskActive = true;
+  }
 }
